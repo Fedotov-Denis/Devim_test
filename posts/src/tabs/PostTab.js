@@ -16,8 +16,8 @@ export default class PostTab extends React.Component{
 	render() {
 		return (
 			<HashRouter>
-				<Route exact path="/" render={<PostTable postStore={postStore}/>}/>
-				<Route path="/post/:number" render={(props) => <PostEdit {...props} postStore={postStore}/>} />
+				<Route exact path="/" ><PostTable postStore={postStore}/></Route>
+				<Route path="/post/:number" ><PostEdit postStore={postStore}/> </Route>
 			</HashRouter>
 		);
 	}

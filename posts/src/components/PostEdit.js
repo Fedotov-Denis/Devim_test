@@ -8,12 +8,11 @@ import Post from "models/PostModel.js"
 @observer
 export default class PostEdit extends React.Component{
 	
-	
 	constructor(props){
 		super();
 		this.props = props;
 		this.state = {title: this.props.postStore.getPosts[this.props.match.params.number-1].title, 
-						body: this.props.postStore.getPosts[this.props.match.params.number-1].body};
+					body: this.props.postStore.getPosts[this.props.match.params.number-1].body};
 	}
 	
 	onSaveClick(){
@@ -39,7 +38,8 @@ export default class PostEdit extends React.Component{
 	}
 	
 	render() {
-		return (<div>
+		return (
+			<div>
 				<p>You are editing post number {this.props.match.params.number}</p>
 				<label>Id: </label><input type="text" value={this.props.postStore.getPosts[this.props.match.params.number-1].id} disabled/>
 				<br/>

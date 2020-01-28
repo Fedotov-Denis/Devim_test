@@ -30,6 +30,8 @@ function TabPanel(props) {
   );
 }
 
+var postStore = new PostStore();
+
 @observer
 export default class App extends React.Component{
 	
@@ -46,20 +48,27 @@ export default class App extends React.Component{
 		const { value } = this.state;
 		
 		return (
-			<div >
-				<AppBar position="static">
-				  <Tabs value={value} onChange={this.handleChange}>
-					<Tab label="Posts"/>
-					<Tab label="Users"/>
-				  </Tabs>
-				</AppBar>
-				<TabPanel value={value} index={0}>
-					<PostTab/>
-				</TabPanel>
-				<TabPanel value={value} index={1}>
-					Item Two
-				</TabPanel>
-			</div>
+			<HashRouter>
+				<Route exact path="/">
+					<div>
+						<AppBar position="static">
+						  <Tabs value={value} onChange={this.handleChange}>
+							<Tab label="Posts"/>
+							<Tab label="Users"/>
+						  </Tabs>
+						</AppBar>
+						<TabPanel value={value} index={0}>
+							<PostTable postStore={postStore}/>
+						</TabPanel>
+						<TabPanel value={value} index={1}>
+							Item Two
+						</TabPanel>
+					</div>
+				</Route>
+				<Route path="/post/:number">
+					{(props)=><PostEdit {...props} postStore={postStore}/>}
+				</Route>
+			</HashRouter>
 		);
 	}
 }
